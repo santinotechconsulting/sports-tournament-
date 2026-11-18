@@ -145,13 +145,13 @@ export const TournamentPublicHub: React.FC<TournamentPublicHubProps> = ({
       {/* Hero Banner Card */}
       <div className="relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900 shadow-2xl">
         <div
-          className="h-64 sm:h-72 w-full bg-cover bg-center relative"
+          className="h-48 sm:h-64 md:h-72 w-full bg-cover bg-center relative"
           style={{ backgroundImage: `url(${tournament.bannerUrl})` }}
         >
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent" />
         </div>
 
-        <div className="relative -mt-24 p-6 sm:p-8 space-y-4">
+        <div className="relative -mt-16 sm:-mt-24 p-5 sm:p-8 space-y-4">
           <div className="flex flex-wrap items-center gap-2">
             <span className="px-3 py-1 rounded-full bg-emerald-500 text-slate-950 font-extrabold text-xs uppercase tracking-wider">
               {tournament.sportId}
@@ -420,7 +420,9 @@ export const TournamentPublicHub: React.FC<TournamentPublicHubProps> = ({
                       <img
                         src={player.photoUrl}
                         alt={player.fullName}
-                        className="w-10 h-10 rounded-full object-cover border border-slate-700"
+                        loading="lazy"
+                        decoding="async"
+                        className="w-10 h-10 rounded-full object-cover border border-slate-700 shrink-0"
                       />
                       <div className="flex-1">
                         <div className="flex items-center gap-1.5 font-bold text-white">
@@ -466,7 +468,9 @@ export const TournamentPublicHub: React.FC<TournamentPublicHubProps> = ({
                     <img
                       src={player.photoUrl}
                       alt={player.fullName}
-                      className="w-10 h-10 rounded-full object-cover border border-slate-700"
+                      loading="lazy"
+                      decoding="async"
+                      className="w-10 h-10 rounded-full object-cover border border-slate-700 shrink-0"
                     />
                     <div>
                       <h4 className="font-bold text-sm text-white">{player.fullName}</h4>
@@ -539,6 +543,8 @@ export const TournamentPublicHub: React.FC<TournamentPublicHubProps> = ({
                 <img
                   src={ven.imageUrl}
                   alt={ven.name}
+                  loading="lazy"
+                  decoding="async"
                   className="h-44 w-full object-cover"
                 />
                 <div className="p-6 space-y-3 text-xs">

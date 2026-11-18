@@ -91,9 +91,9 @@ export const ScorekeeperDesk: React.FC<ScorekeeperDeskProps> = ({
       role="dialog"
       aria-modal="true"
       aria-labelledby="scorekeeper-desk-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md animate-fade-in overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-2.5 sm:p-4 bg-slate-950/85 backdrop-blur-md animate-fade-in overflow-y-auto"
     >
-      <div className="relative w-full max-w-3xl bg-slate-900 border border-emerald-500/30 rounded-3xl shadow-2xl p-6 md:p-8 text-slate-100 my-8">
+      <div className="relative w-full max-w-3xl bg-slate-900 border border-emerald-500/30 rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 text-slate-100 my-auto max-h-[94dvh] overflow-y-auto">
         <button
           onClick={onClose}
           aria-label="Close scorekeeper dialog"
@@ -160,7 +160,7 @@ export const ScorekeeperDesk: React.FC<ScorekeeperDeskProps> = ({
             <select
               value={currentPeriod}
               onChange={(e) => setCurrentPeriod(e.target.value)}
-              className="w-full text-xs bg-slate-900 border border-slate-750 rounded-lg p-2 text-white"
+              className="w-full text-xs bg-slate-900 border border-slate-700 rounded-lg p-2 text-white"
             >
               <option value="1st Half">1st Half</option>
               <option value="Half Time">Half Time</option>
@@ -257,7 +257,7 @@ export const ScorekeeperDesk: React.FC<ScorekeeperDeskProps> = ({
             </div>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <input
               type="text"
               placeholder="Incident notes (e.g. Header from corner kick / reckless tackle)..."
@@ -268,7 +268,7 @@ export const ScorekeeperDesk: React.FC<ScorekeeperDeskProps> = ({
             <button
               type="button"
               onClick={handleAddEvent}
-              className="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs rounded-lg transition-colors flex items-center gap-1.5 shrink-0"
+              className="px-4 py-2.5 sm:py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs rounded-lg transition-colors flex items-center justify-center gap-1.5 shrink-0"
             >
               <Plus className="w-3.5 h-3.5" />
               Add Event
@@ -310,11 +310,11 @@ export const ScorekeeperDesk: React.FC<ScorekeeperDeskProps> = ({
             Cancel
           </button>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 w-full sm:w-auto justify-end">
             <button
               type="button"
               onClick={() => handleSaveAndConfirm(false)}
-              className="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition-colors flex items-center gap-1.5"
+              className="flex-1 sm:flex-initial px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition-colors flex items-center justify-center gap-1.5"
             >
               <Save className="w-4 h-4" />
               Save Provisional Score
@@ -322,7 +322,7 @@ export const ScorekeeperDesk: React.FC<ScorekeeperDeskProps> = ({
             <button
               type="button"
               onClick={() => handleSaveAndConfirm(true)}
-              className="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold rounded-xl transition-all shadow-lg shadow-emerald-500/20 flex items-center gap-2"
+              className="flex-1 sm:flex-initial px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold rounded-xl transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2"
             >
               <CheckCircle className="w-4 h-4" />
               {getTranslation(lang, 'approveResult')}

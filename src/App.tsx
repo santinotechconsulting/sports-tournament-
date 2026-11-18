@@ -135,7 +135,7 @@ export default function App() {
   });
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-slate-950">
+    <div className="min-h-dvh bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-slate-950 overflow-x-hidden">
       {/* Skip to Content for Web Accessibility */}
       <a
         href="#main-content"
@@ -145,8 +145,8 @@ export default function App() {
       </a>
 
       {/* HEADER & TOP NAVBAR */}
-      <header className="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80 print:hidden no-print">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4">
+      <header className="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80 pt-[env(safe-area-inset-top)] print:hidden no-print">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-18 flex items-center justify-between gap-2 sm:gap-4">
           {/* Logo & Brand */}
           <div
             onClick={() => {
@@ -242,17 +242,19 @@ export default function App() {
             {view === 'admin' ? (
               <button
                 onClick={() => setView('portal')}
-                className="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-medium transition-colors border border-slate-700 flex items-center gap-1.5"
+                className="px-2.5 sm:px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-medium transition-colors border border-slate-700 flex items-center gap-1.5"
               >
-                {getTranslation(lang, 'backToPublic')}
+                <span className="hidden sm:inline">{getTranslation(lang, 'backToPublic')}</span>
+                <span className="sm:hidden">Portal</span>
               </button>
             ) : (
               <button
                 onClick={() => setView('admin')}
-                className="px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold transition-all shadow-md flex items-center gap-1.5"
+                className="px-2.5 sm:px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold transition-all shadow-md flex items-center gap-1.5"
               >
                 <Shield className="w-3.5 h-3.5" />
-                {getTranslation(lang, 'adminDashboard')}
+                <span className="hidden sm:inline">{getTranslation(lang, 'adminDashboard')}</span>
+                <span className="sm:hidden">Admin</span>
               </button>
             )}
 
@@ -260,7 +262,7 @@ export default function App() {
             <button
               onClick={() => setIsContactModalOpen(true)}
               aria-label="Open contact secretariat dialog"
-              className="p-2 rounded-xl bg-slate-900 hover:bg-slate-850 text-slate-300 border border-slate-800 transition-colors hidden sm:flex items-center justify-center"
+              className="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition-colors hidden sm:flex items-center justify-center"
               title="Contact Tournament Committee"
             >
               <HelpCircle className="w-4 h-4 text-emerald-400" />
@@ -269,6 +271,8 @@ export default function App() {
             {/* Mobile Drawer Toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={isMobileMenuOpen}
               className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 md:hidden"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -286,18 +290,44 @@ export default function App() {
                 placeholder={getTranslation(lang, 'searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white"
+                className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white"
               />
             </div>
 
-            <div className="pt-2 flex flex-col gap-2 text-xs">
+            <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs">
+              <UserCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+              <span className="text-slate-400 shrink-0">Role:</span>
+              <select
+                aria-label="Mobile demo role selector"
+                value={currentRole}
+                onChange={(e) => {
+                  const role = e.target.value as UserRole;
+                  setCurrentRole(role);
+                  if (role === 'super_admin' || role === 'org_admin') {
+                    setView('admin');
+                  }
+                  setIsMobileMenuOpen(false);
+                }}
+                className="flex-1 bg-transparent text-slate-200 text-xs font-semibold focus:outline-none"
+              >
+                <option value="spectator" className="bg-slate-900 text-white">Public Spectator</option>
+                <option value="super_admin" className="bg-slate-900 text-white">Super Administrator</option>
+                <option value="org_admin" className="bg-slate-900 text-white">Organization Admin</option>
+                <option value="tournament_manager" className="bg-slate-900 text-white">Tournament Manager</option>
+                <option value="referee" className="bg-slate-900 text-white">Match Referee</option>
+                <option value="scorekeeper" className="bg-slate-900 text-white">Scorekeeper</option>
+                <option value="team_manager" className="bg-slate-900 text-white">Team Coach / Manager</option>
+              </select>
+            </div>
+
+            <div className="pt-1 flex flex-col gap-2 text-xs">
               <button
                 onClick={() => {
                   setView('portal');
                   setSelectedTournament(null);
                   setIsMobileMenuOpen(false);
                 }}
-                className="text-left py-2 px-3 rounded-lg bg-slate-900 text-white font-medium"
+                className="text-left py-2.5 px-3 rounded-lg bg-slate-900 text-white font-medium"
               >
                 {getTranslation(lang, 'navHome')}
               </button>
@@ -306,7 +336,7 @@ export default function App() {
                   setView('admin');
                   setIsMobileMenuOpen(false);
                 }}
-                className="text-left py-2 px-3 rounded-lg bg-emerald-500/10 text-emerald-400 font-bold border border-emerald-500/20"
+                className="text-left py-2.5 px-3 rounded-lg bg-emerald-500/10 text-emerald-400 font-bold border border-emerald-500/20"
               >
                 {getTranslation(lang, 'adminDashboard')}
               </button>
@@ -315,7 +345,7 @@ export default function App() {
                   setIsContactModalOpen(true);
                   setIsMobileMenuOpen(false);
                 }}
-                className="text-left py-2 px-3 rounded-lg text-slate-300"
+                className="text-left py-2.5 px-3 rounded-lg bg-slate-900/60 text-slate-300"
               >
                 {getTranslation(lang, 'navContact')}
               </button>
@@ -487,6 +517,8 @@ export default function App() {
                           <img
                             src={tourney.bannerUrl}
                             alt={tourney.name}
+                            loading="lazy"
+                            decoding="async"
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-black/40" />

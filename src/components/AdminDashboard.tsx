@@ -190,7 +190,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               className={`px-3.5 py-2 rounded-xl flex items-center gap-2 whitespace-nowrap transition-all ${
                 isActive
                   ? 'bg-emerald-500 text-slate-950 font-bold shadow'
-                  : 'bg-slate-900/60 hover:bg-slate-850 text-slate-300 hover:text-white border border-slate-800/60'
+                  : 'bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800/60'
               }`}
             >
               <Icon className="w-3.5 h-3.5" />
@@ -269,20 +269,20 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               <p className="text-xs text-slate-400 mb-4 leading-relaxed">
                 Export official tables, match schedules, and complete squad lists directly to CSV for federation records.
               </p>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => {
                     const st = calculateStandings(currentTournament, teams, matches);
                     exportStandingsToCSV(st, currentTournament.name);
                   }}
-                  className="px-3.5 py-2 bg-slate-800 hover:bg-slate-750 text-slate-200 text-xs rounded-xl border border-slate-700 flex items-center gap-1.5 transition-colors"
+                  className="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs rounded-xl border border-slate-700 flex items-center gap-1.5 transition-colors"
                 >
                   <Download className="w-3.5 h-3.5 text-emerald-400" />
                   Standings CSV
                 </button>
                 <button
                   onClick={() => exportFixturesToCSV(matches, teams, currentTournament.name)}
-                  className="px-3.5 py-2 bg-slate-800 hover:bg-slate-750 text-slate-200 text-xs rounded-xl border border-slate-700 flex items-center gap-1.5 transition-colors"
+                  className="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs rounded-xl border border-slate-700 flex items-center gap-1.5 transition-colors"
                 >
                   <Download className="w-3.5 h-3.5 text-emerald-400" />
                   Fixtures CSV
@@ -365,28 +365,30 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   const home = teams.find((t) => t.id === m.homeTeamId);
                   const away = teams.find((t) => t.id === m.awayTeamId);
                   return (
-                    <div key={m.id} className="p-3.5 flex items-center justify-between text-xs hover:bg-slate-900/60 transition-colors">
-                      <div className="flex items-center gap-3">
-                        <span className="font-mono text-slate-400 w-16">
+                    <div key={m.id} className="p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs hover:bg-slate-900/60 transition-colors">
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-3 min-w-0">
+                        <span className="font-mono text-slate-400 shrink-0">
                           R{m.roundNumber} #{m.matchNumber}
                         </span>
-                        <span className="font-semibold text-white">
+                        <span className="font-semibold text-white truncate">
                           {home?.name} vs {away?.name}
                         </span>
-                        {m.group && <span className="px-1.5 py-0.5 rounded bg-slate-800 text-[10px] text-slate-400">{m.group}</span>}
+                        {m.group && <span className="px-1.5 py-0.5 rounded bg-slate-800 text-[10px] text-slate-400 shrink-0">{m.group}</span>}
                       </div>
 
-                      <div className="flex items-center gap-3">
+                      <div className="flex flex-wrap items-center justify-between sm:justify-end gap-2.5 sm:gap-3 shrink-0">
                         <span className="font-mono text-slate-400">{m.scheduledDate} {m.scheduledTime}</span>
-                        <span className="font-mono font-bold text-emerald-400 bg-slate-900 px-2 py-0.5 rounded">
-                          {m.score.home} - {m.score.away}
-                        </span>
-                        <button
-                          onClick={() => onOpenScorekeeper(m)}
-                          className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-300 text-[11px] transition-colors"
-                        >
-                          Score Desk
-                        </button>
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono font-bold text-emerald-400 bg-slate-900 px-2 py-0.5 rounded">
+                            {m.score.home} - {m.score.away}
+                          </span>
+                          <button
+                            onClick={() => onOpenScorekeeper(m)}
+                            className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-300 text-[11px] font-medium transition-colors"
+                          >
+                            Score Desk
+                          </button>
+                        </div>
                       </div>
                     </div>
                   );
@@ -511,18 +513,20 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {officials.map((off) => (
-              <div key={off.id} className="p-4 rounded-2xl bg-slate-950 border border-slate-800 flex items-center gap-4 text-xs">
+              <div key={off.id} className="p-4 rounded-2xl bg-slate-950 border border-slate-800 flex items-center gap-3 sm:gap-4 text-xs">
                 <img
                   src={off.photoUrl}
                   alt={off.name}
-                  className="w-12 h-12 rounded-full object-cover border border-slate-700"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-12 h-12 rounded-full object-cover border border-slate-700 shrink-0"
                 />
-                <div className="flex-1">
-                  <h4 className="font-bold text-sm text-white">{off.name}</h4>
-                  <p className="text-emerald-400 font-medium">{off.certification}</p>
-                  <p className="text-slate-400 text-[11px] mt-0.5">{off.email} • {off.phone}</p>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-bold text-sm text-white truncate">{off.name}</h4>
+                  <p className="text-emerald-400 font-medium truncate">{off.certification}</p>
+                  <p className="text-slate-400 text-[11px] mt-0.5 truncate">{off.email} • {off.phone}</p>
                 </div>
-                <span className="font-mono text-xs px-2 py-1 bg-slate-900 rounded-lg text-slate-300">
+                <span className="font-mono text-xs px-2 py-1 bg-slate-900 rounded-lg text-slate-300 shrink-0">
                   {off.matchesOfficiated} matches
                 </span>
               </div>
@@ -533,8 +537,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
       {/* TAB 7: FINANCIAL LEDGER */}
       {activeTab === 'finance' && (
-        <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4">
-          <div className="flex items-center justify-between">
+        <div className="p-5 sm:p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-2">
             <h3 className="text-lg font-bold text-white flex items-center gap-2">
               <DollarSign className="w-5 h-5 text-emerald-400" />
               Registration Fees & Mobile Money Ledger (FCFA)
@@ -546,15 +550,15 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
           <div className="divide-y divide-slate-800 border border-slate-800 rounded-2xl overflow-hidden bg-slate-950 text-xs">
             {financials.map((rec) => (
-              <div key={rec.id} className="p-4 flex items-center justify-between">
-                <div>
-                  <h4 className="font-bold text-white">{rec.teamName}</h4>
-                  <p className="text-slate-400 text-[11px]">
+              <div key={rec.id} className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="min-w-0">
+                  <h4 className="font-bold text-white truncate">{rec.teamName}</h4>
+                  <p className="text-slate-400 text-[11px] break-words">
                     Method: <strong className="text-slate-200 uppercase">{rec.method.replace('_', ' ')}</strong> • Ref: {rec.reference}
                   </p>
                 </div>
 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0">
                   <span className="font-mono font-bold text-sm text-emerald-400">
                     {rec.amount.toLocaleString()} {rec.currency}
                   </span>

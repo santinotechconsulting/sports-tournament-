@@ -55,7 +55,7 @@ export const LiveMatchTicker: React.FC<LiveMatchTickerProps> = ({
             <div
               key={match.id}
               onClick={() => onOpenMatchModal(match)}
-              className="group relative bg-gradient-to-br from-slate-900 to-slate-900/90 hover:from-slate-850 hover:to-slate-800 border border-emerald-500/40 rounded-2xl p-5 shadow-lg shadow-emerald-950/20 cursor-pointer transition-all hover:scale-[1.01] hover:border-emerald-400"
+              className="group relative bg-gradient-to-br from-slate-900 to-slate-900/90 hover:from-slate-800 hover:to-slate-800/90 border border-emerald-500/40 rounded-2xl p-4 sm:p-5 shadow-lg shadow-emerald-950/20 cursor-pointer transition-all hover:scale-[1.01] hover:border-emerald-400"
             >
               {/* Top Bar */}
               <div className="flex items-center justify-between text-xs text-slate-400 mb-3">

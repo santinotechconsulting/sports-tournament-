@@ -43,11 +43,11 @@ export const MatchDetailModal: React.FC<MatchDetailModalProps> = ({
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md animate-fade-in overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-2.5 sm:p-4 bg-slate-950/85 backdrop-blur-md animate-fade-in overflow-y-auto"
     >
-      <div className="relative w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl overflow-hidden text-slate-100 my-8">
+      <div className="relative w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden text-slate-100 my-auto max-h-[94dvh] flex flex-col">
         {/* Header bar */}
-        <div className="relative bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 p-6 border-b border-slate-800">
+        <div className="relative bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 p-4 sm:p-6 border-b border-slate-800 shrink-0">
           <button
             onClick={onClose}
             aria-label="Close dialog"
@@ -69,26 +69,26 @@ export const MatchDetailModal: React.FC<MatchDetailModalProps> = ({
           </div>
 
           {/* Big Scoreboard */}
-          <div className="grid grid-cols-3 items-center py-4">
+          <div className="grid grid-cols-3 items-center gap-2 py-3 sm:py-4">
             {/* Home Team */}
-            <div className="text-center space-y-2">
-              <div className="w-16 h-16 mx-auto rounded-2xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-3xl shadow-inner">
+            <div className="text-center space-y-1.5 sm:space-y-2 min-w-0">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto rounded-2xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-2xl sm:text-3xl shadow-inner">
                 {home?.logo || '🛡️'}
               </div>
-              <h3 className="font-bold text-base md:text-lg text-white leading-tight">
+              <h3 className="font-bold text-xs sm:text-base md:text-lg text-white leading-tight break-words">
                 {home?.name || 'Home Team'}
               </h3>
-              <p className="text-xs text-slate-400">{home?.city}, {home?.country}</p>
+              <p className="text-[11px] sm:text-xs text-slate-400 truncate">{home?.city}, {home?.country}</p>
             </div>
 
             {/* Score in middle */}
             <div className="text-center">
-              <div className="flex items-center justify-center gap-3">
-                <span className="text-4xl md:text-5xl font-black font-mono text-emerald-400">
+              <div className="flex items-center justify-center gap-1.5 sm:gap-3">
+                <span className="text-3xl sm:text-4xl md:text-5xl font-black font-mono text-emerald-400">
                   {match.score.home}
                 </span>
-                <span className="text-2xl font-light text-slate-500">:</span>
-                <span className="text-4xl md:text-5xl font-black font-mono text-emerald-400">
+                <span className="text-xl sm:text-2xl font-light text-slate-500">:</span>
+                <span className="text-3xl sm:text-4xl md:text-5xl font-black font-mono text-emerald-400">
                   {match.score.away}
                 </span>
               </div>
@@ -118,20 +118,20 @@ export const MatchDetailModal: React.FC<MatchDetailModalProps> = ({
             </div>
 
             {/* Away Team */}
-            <div className="text-center space-y-2">
-              <div className="w-16 h-16 mx-auto rounded-2xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-3xl shadow-inner">
+            <div className="text-center space-y-1.5 sm:space-y-2 min-w-0">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto rounded-2xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-2xl sm:text-3xl shadow-inner">
                 {away?.logo || '🛡️'}
               </div>
-              <h3 className="font-bold text-base md:text-lg text-white leading-tight">
+              <h3 className="font-bold text-xs sm:text-base md:text-lg text-white leading-tight break-words">
                 {away?.name || 'Away Team'}
               </h3>
-              <p className="text-xs text-slate-400">{away?.city}, {away?.country}</p>
+              <p className="text-[11px] sm:text-xs text-slate-400 truncate">{away?.city}, {away?.country}</p>
             </div>
           </div>
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 max-h-[60vh] overflow-y-auto space-y-6">
+        <div className="p-4 sm:p-6 flex-1 overflow-y-auto space-y-6">
           {/* Match events timeline */}
           <div>
             <h4 className="text-sm font-bold text-slate-200 uppercase tracking-wider mb-3 flex items-center gap-2">

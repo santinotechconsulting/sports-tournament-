@@ -47,10 +47,10 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
           {/* Group Switcher Tabs */}
           {availableGroups.length > 0 && (
-            <div className="flex items-center gap-1 p-1 bg-slate-950 rounded-xl border border-slate-800 text-xs">
+            <div className="flex items-center gap-1 p-1 bg-slate-950 rounded-xl border border-slate-800 text-xs overflow-x-auto max-w-full">
               <button
                 onClick={() => setSelectedGroup('all')}
                 className={`px-3 py-1.5 rounded-lg transition-all ${
@@ -114,7 +114,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({
                 <tr
                   key={row.teamId}
                   onClick={() => onSelectTeam && onSelectTeam(row.teamId)}
-                  className={`hover:bg-slate-850/60 transition-colors cursor-pointer ${
+                  className={`hover:bg-slate-800/60 transition-colors cursor-pointer ${
                     isQualified ? 'bg-emerald-950/10' : ''
                   }`}
                 >

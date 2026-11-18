@@ -80,9 +80,9 @@ export const ContactUsModal: React.FC<ContactUsModalProps> = ({ isOpen, onClose,
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-modal-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fade-in"
+      className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-2.5 sm:p-4 bg-slate-950/80 backdrop-blur-sm animate-fade-in overflow-y-auto"
     >
-      <div className="relative w-full max-w-lg bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-2xl text-slate-100">
+      <div className="relative w-full max-w-lg bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 md:p-8 shadow-2xl text-slate-100 my-auto max-h-[94dvh] overflow-y-auto">
         <button
           onClick={onClose}
           aria-label="Close dialog"

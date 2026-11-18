@@ -117,7 +117,7 @@ export const KnockoutBracketView: React.FC<KnockoutBracketViewProps> = ({
     return (
       <div
         key={m.id}
-        className="w-64 bg-slate-900 border border-slate-800 rounded-2xl p-3.5 shadow-lg hover:border-emerald-500/50 transition-all cursor-pointer group"
+        className="w-full sm:w-64 bg-slate-900 border border-slate-800 rounded-2xl p-3.5 shadow-lg hover:border-emerald-500/50 transition-all cursor-pointer group"
       >
         <div className="flex items-center justify-between text-[11px] text-slate-400 mb-2">
           <span className="font-semibold text-slate-300">{m.round}</span>
@@ -188,7 +188,7 @@ export const KnockoutBracketView: React.FC<KnockoutBracketViewProps> = ({
         </div>
 
         {/* Stage Tabs for mobile/desktop */}
-        <div className="flex items-center gap-1.5 p-1 bg-slate-900 rounded-xl border border-slate-800 text-xs">
+        <div className="flex items-center gap-1.5 p-1 bg-slate-900 rounded-xl border border-slate-800 text-xs overflow-x-auto max-w-full">
           <button
             onClick={() => setActiveStage('all')}
             className={`px-3 py-1.5 rounded-lg transition-all ${
@@ -224,9 +224,22 @@ export const KnockoutBracketView: React.FC<KnockoutBracketViewProps> = ({
         </div>
       </div>
 
+      {/* Mobile swipe hint when viewing full tree */}
+      {activeStage === 'all' && (
+        <p className="text-[11px] text-slate-400 mb-2 md:hidden">
+          Swipe horizontally to view all bracket rounds, or select Quarters / Semis / Final above.
+        </p>
+      )}
+
       {/* Bracket Tree View */}
       <div className="overflow-x-auto pb-4">
-        <div className="min-w-[850px] flex items-center justify-between gap-8 py-2">
+        <div
+          className={
+            activeStage === 'all'
+              ? 'min-w-[850px] flex items-center justify-between gap-8 py-2'
+              : 'flex flex-col items-center gap-6 py-2'
+          }
+        >
           {/* Column 1: Quarter Finals */}
           {(activeStage === 'all' || activeStage === 'qf') && (
             <div className="space-y-6">
