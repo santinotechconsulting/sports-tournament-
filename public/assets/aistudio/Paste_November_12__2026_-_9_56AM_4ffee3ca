@@ -1,0 +1,1427 @@
+# PROJECT TITLE: UNIVERSAL SPORTS & GAMES TOURNAMENT MANAGEMENT SYSTEM
+
+## 1. PROJECT VISION AND OBJECTIVE
+
+Act as a senior full-stack software architect, sports technology specialist, UI/UX designer, database engineer, tournament administrator, and software quality assurance engineer.
+
+Design and develop a comprehensive, modern, scalable, secure, and fully functional **Universal Tournament Management System (UTMS)**.
+
+The platform must enable sports organizations, schools, universities, football academies, sports associations, event organizers, clubs, communities, and private tournament promoters to create, organize, manage, monitor, and conclude sporting competitions.
+
+Although football (soccer) is the primary use case, the platform must support multiple sports and competitive games through a configurable tournament management engine.
+
+The system must not be developed as a static tournament information website. It must be a fully functional tournament administration and competition management platform with a public-facing portal and a secure administrative dashboard.
+
+### Primary objectives
+
+1. Allow administrators to create and manage multiple tournaments.
+2. Support football and other sports and competitive games.
+3. Register teams, clubs, schools, individuals, and players.
+4. Automatically generate fixtures and tournament schedules.
+5. Manage match results, scores, statistics, and standings.
+6. Support different tournament formats and competition rules.
+7. Display live scores and tournament progress where enabled.
+8. Manage players, coaches, referees, officials, venues, and organizers.
+9. Generate knockout brackets and determine tournament champions.
+10. Provide public tournament pages for spectators and participants.
+11. Generate reports, statistics, and downloadable documents.
+12. Support multiple organizations managing their own tournaments independently.
+
+The platform should be suitable for small community tournaments as well as large regional, national, inter-school, university, and international competitions.
+
+## 2. PLATFORM STRUCTURE
+
+Develop the application using a modular architecture with the following major components:
+
+A. Public Tournament Portal.
+B. Tournament Administration Dashboard.
+C. Organization and Club Management.
+D. Team and Participant Registration.
+E. Player and Athlete Management.
+F. Tournament Scheduling and Fixture Generation.
+G. Match and Game Management.
+H. Live Scores and Results.
+I. League Tables and Rankings.
+J. Knockout Bracket Management.
+K. Referee and Officials Management.
+L. Venues and Facilities Management.
+M. Notifications and Communication.
+N. Reports and Analytics.
+O. Financial and Registration Management.
+P. System Administration and Security.
+
+Each module must be connected to the central database and share relevant information.
+
+Avoid creating disconnected modules or duplicate records.
+
+## 3. USER ROLES AND PERMISSIONS
+
+Implement a role-based access control system.
+
+### A. Super Administrator
+
+Has complete control over the entire platform.
+
+Responsibilities:
+- Manage all organizations.
+- Create and manage administrator accounts.
+- Approve or suspend organizations.
+- Monitor all tournaments.
+- Manage platform-wide settings.
+- Configure available sports.
+- Manage subscription plans if applicable.
+- View platform-wide reports.
+- Manage security and permissions.
+- Access audit logs.
+- Configure system integrations.
+
+### B. Organization Administrator
+
+Manages tournaments belonging to a particular organization.
+
+Responsibilities:
+- Create tournaments.
+- Configure competition rules.
+- Register teams and participants.
+- Manage players and officials.
+- Generate fixtures.
+- Publish schedules.
+- Record match results.
+- Manage tournament standings.
+- Publish tournament updates.
+- Generate reports.
+
+An organization administrator must not access another organization's private information.
+
+### C. Tournament Manager
+
+Manages a specific tournament.
+
+Responsibilities:
+- Manage registered teams.
+- Review registration applications.
+- Schedule matches.
+- Assign venues.
+- Manage officials.
+- Update tournament information.
+- Monitor match progress.
+- Manage disciplinary records.
+
+### D. Team Manager or Coach
+
+Responsibilities:
+- Register a team.
+- Submit player information.
+- Upload team logos.
+- Manage team profiles.
+- Submit player changes where permitted.
+- View fixtures and standings.
+- Receive tournament notifications.
+- Submit official complaints or protests.
+
+### E. Referee or Match Official
+
+Responsibilities:
+- View assigned fixtures.
+- Confirm match attendance.
+- Record match events.
+- Submit match results.
+- Record player statistics.
+- Report disciplinary incidents.
+- Submit official match reports.
+
+Referees must only access matches and information assigned to them, subject to tournament permissions.
+
+### F. Scorekeeper or Match Operator
+
+Responsibilities:
+- Access assigned matches.
+- Enter scores and match events.
+- Update match status.
+- Record statistics.
+- Submit results for confirmation.
+
+Where required, results should await referee or administrator approval before becoming official.
+
+### G. Player or Athlete
+
+Responsibilities:
+- View personal profile.
+- View registered teams.
+- View fixtures and results.
+- View individual statistics.
+- Receive notifications.
+- View tournament rankings.
+
+### H. Spectator or Public Visitor
+
+Allow public visitors to:
+- Browse tournaments.
+- View registered teams.
+- View fixtures.
+- Follow live scores.
+- View standings.
+- View match results.
+- View player profiles where publicly permitted.
+- View tournament news.
+- Download publicly available schedules and results.
+
+## 4. MULTI-SPORT MANAGEMENT ENGINE
+
+This is one of the most important parts of the application.
+
+Build a flexible sport configuration system that allows administrators to add, edit, activate, deactivate, and configure different sports without changing the core application code.
+
+### Supported sports and games
+
+**Team sports:**
+1. Football (Soccer).
+2. Basketball.
+3. Volleyball.
+4. Handball.
+5. Rugby.
+6. Futsal.
+7. Cricket.
+8. Hockey.
+9. Baseball.
+10. American Football.
+11. Netball.
+12. Water Polo.
+
+**Individual sports:**
+1. Tennis.
+2. Table Tennis.
+3. Badminton.
+4. Boxing.
+5. Athletics.
+6. Swimming.
+7. Wrestling.
+8. Taekwondo.
+9. Judo.
+10. Karate.
+11. Cycling.
+12. Gymnastics.
+13. Chess.
+14. Golf.
+15. Martial Arts.
+
+**Competitive games and esports:**
+- FIFA / EA SPORTS FC.
+- eFootball.
+- Basketball video games.
+- Mobile gaming competitions.
+- Chess competitions.
+- Other administrator-defined games.
+
+The system must also support custom sports and games.
+
+### Sport configuration
+
+Each sport should have its own configuration profile.
+
+The profile should define:
+- Sport name.
+- Sport category.
+- Sport icon.
+- Sport description.
+- Team-based or individual competition.
+- Minimum participants.
+- Maximum participants.
+- Number of players or participants per side.
+- Substitution rules, where applicable.
+- Match duration or event duration.
+- Scoring method.
+- Points allocation.
+- Tie-breaking rules.
+- Match event types.
+- Periods, quarters, halves, sets, rounds, or heats.
+- Overtime rules.
+- Penalty or shootout rules.
+- Player statistics.
+- Team statistics.
+- Ranking method.
+- Competition-specific rules.
+
+Allow administrators to configure additional fields where necessary.
+
+**Important:** Do not force all sports to use football rules. Basketball must have basketball scoring and statistics. Volleyball must support sets and points. Tennis must support sets and games. Athletics must support event-based performance and timing.
+
+The system must distinguish between the common tournament engine and sport-specific competition logic.
+
+## 5. TOURNAMENT CREATION AND CONFIGURATION
+
+Create a comprehensive tournament creation wizard.
+
+Administrators should be able to create a tournament through a guided process.
+
+### Step 1: Basic Information
+
+Fields:
+- Tournament name.
+- Tournament logo or banner.
+- Sport.
+- Competition category.
+- Tournament description.
+- Organizer.
+- Country.
+- Region.
+- City.
+- Venue or venues.
+- Tournament contact information.
+- Tournament website or social links.
+
+### Step 2: Competition Details
+
+Configure:
+- Tournament type.
+- Men's, women's, mixed, or open competition.
+- Age category.
+- Minimum age.
+- Maximum age.
+- Amateur, professional, school, university, community, or corporate category.
+- Team-based or individual competition.
+- Number of participating teams or individuals.
+- Registration opening date.
+- Registration closing date.
+- Competition start date.
+- Competition end date.
+
+### Step 3: Tournament Format
+
+Support the following formats:
+
+**1. Single Round Robin**
+
+Every participant competes against every other participant once.
+
+**2. Double Round Robin**
+
+Participants compete against each other twice.
+
+**3. Single Elimination**
+
+A participant is eliminated after losing a match.
+
+**4. Double Elimination**
+
+Participants move through winners' and losers' brackets and are eliminated after the required losses.
+
+**5. Group Stage**
+
+Participants are divided into groups, with the best performers advancing.
+
+**6. Group Stage + Knockout**
+
+Teams compete in groups before advancing to knockout rounds.
+
+**7. Swiss System**
+
+Participants are paired according to their current performance and ranking over several rounds.
+
+**8. League Format**
+
+A season-long competition with cumulative standings.
+
+**9. Hybrid Tournament**
+
+Allow administrators to combine different formats.
+
+**10. Custom Format**
+
+Provide advanced configuration for tournaments with special rules.
+
+### Step 4: Scoring and Ranking
+
+Allow administrators to define:
+- Win points.
+- Draw points.
+- Loss points.
+- Bonus points.
+- Penalty points.
+- Tie-break rules.
+- Qualification requirements.
+- Ranking criteria.
+
+For football, provide sensible defaults:
+- Win: 3 points.
+- Draw: 1 point.
+- Loss: 0 points.
+
+Allow administrators to modify these values.
+
+For other sports, use the appropriate sport-specific scoring system.
+
+### Step 5: Registration Settings
+
+Configure:
+- Open or invitation-only registration.
+- Registration fee.
+- Currency.
+- Maximum participants.
+- Required documents.
+- Registration approval process.
+- Eligibility rules.
+- Registration status.
+- Late registration rules.
+
+### Step 6: Tournament Publication
+
+Allow administrators to:
+- Save as draft.
+- Preview.
+- Publish.
+- Open registration.
+- Close registration.
+- Suspend.
+- Cancel.
+- Archive.
+
+Every tournament should have its own public page and unique URL.
+
+## 6. TEAM, CLUB AND PARTICIPANT MANAGEMENT
+
+Create a comprehensive participant management module.
+
+### Team registration
+
+Allow team managers to register teams with:
+- Team name.
+- Team logo.
+- Team category.
+- Country.
+- Region.
+- City.
+- Club or school affiliation.
+- Coach.
+- Team manager.
+- Contact details.
+- Home venue.
+- Team description.
+- Registration documents.
+
+### Player registration
+
+Each player should have a profile containing:
+- Full name.
+- Player photograph.
+- Unique player ID.
+- Date of birth.
+- Nationality.
+- Gender, where relevant to competition eligibility.
+- Position or playing role.
+- Jersey number.
+- Team affiliation.
+- Contact details where appropriate.
+- Emergency contact where necessary.
+- Eligibility status.
+- Registration status.
+
+Support bulk player registration through CSV or Excel imports.
+
+Allow administrators to approve, reject, suspend, or transfer participants according to tournament rules.
+
+Prevent duplicate registrations where appropriate using configurable identity and eligibility checks.
+
+### Individual sports
+
+For sports such as tennis, boxing, athletics, swimming, and chess, allow participants to register individually without requiring team membership.
+
+Support individual profiles, categories, rankings, event entries, and competition history.
+
+### Team rosters
+
+Provide:
+- Starting lineup.
+- Substitute players.
+- Reserve players.
+- Captain designation.
+- Team officials.
+- Roster changes.
+- Eligibility verification.
+
+Maintain a record of roster changes.
+
+## 7. FIXTURE GENERATION AND SCHEDULING ENGINE
+
+Develop an intelligent fixture generation engine.
+
+The engine must automatically generate fixtures based on the tournament format and number of participants.
+
+### Required capabilities
+
+- Automatic fixture generation.
+- Manual fixture creation.
+- Random team allocation.
+- Seeded team allocation.
+- Group allocation.
+- Home and away assignment.
+- Round scheduling.
+- Matchday generation.
+- Venue allocation.
+- Match time allocation.
+- Rest-day configuration.
+- Avoidance of conflicting schedules.
+- Rescheduling.
+- Postponement.
+- Match cancellation.
+- Fixture regeneration with safeguards.
+
+### Scheduling constraints
+
+Allow administrators to define:
+- Available playing venues.
+- Available dates.
+- Match durations.
+- Time intervals.
+- Venue capacity.
+- Rest periods.
+- Team availability.
+- Referee availability.
+- Maximum matches per day.
+- Preferred playing times.
+
+Prevent scheduling conflicts where possible.
+
+Do not silently overwrite existing fixtures. Require confirmation before major changes and preserve schedule history.
+
+### Special scheduling requirements
+
+Support:
+- Home and away fixtures.
+- Neutral venues.
+- Multiple venues.
+- Multi-day tournaments.
+- Weekend tournaments.
+- School competitions.
+- Inter-school competitions.
+- Knockout competitions.
+- League seasons.
+
+## 8. MATCH AND GAME MANAGEMENT
+
+Create a detailed match management interface.
+
+Each match should have:
+- Unique match ID.
+- Tournament.
+- Round or matchday.
+- Participating teams or individuals.
+- Venue.
+- Date.
+- Scheduled start time.
+- Referee.
+- Match officials.
+- Match status.
+- Score.
+- Match events.
+- Statistics.
+- Match report.
+
+### Match status
+
+Support:
+- Scheduled.
+- Upcoming.
+- In Progress.
+- Half-Time or Interval.
+- Completed.
+- Postponed.
+- Suspended.
+- Cancelled.
+- Abandoned.
+- Awaiting Approval.
+
+### Football-specific match management
+
+Support:
+- Goals.
+- Own goals.
+- Assists.
+- Yellow cards.
+- Red cards.
+- Substitutions.
+- Penalties.
+- Penalty shootouts.
+- Injury time.
+- Match duration.
+- Half-time score.
+- Full-time score.
+- Extra time.
+- Match attendance where collected.
+
+### Basketball-specific management
+
+Support:
+- Two-point shots.
+- Three-point shots.
+- Free throws.
+- Rebounds.
+- Assists.
+- Steals.
+- Blocks.
+- Turnovers.
+- Fouls.
+- Quarters.
+- Overtime.
+- Player minutes.
+
+### Volleyball-specific management
+
+Support:
+- Sets.
+- Points per set.
+- Set winners.
+- Match winner.
+- Service errors.
+- Attack points.
+- Blocks.
+- Aces.
+
+### Tennis-specific management
+
+Support:
+- Sets.
+- Games.
+- Points.
+- Tiebreaks.
+- Match winner.
+- Player statistics.
+- Walkovers.
+- Retirement.
+
+### Athletics-specific management
+
+Support:
+- Events.
+- Heats.
+- Lanes.
+- Qualifying rounds.
+- Finishing positions.
+- Timing.
+- Distance.
+- Height.
+- Measurement units.
+- Event records.
+- Personal bests.
+
+### Generic sport event management
+
+Allow other sports to define their own match or event data structures, including rounds, periods, sets, attempts, points, penalties, timed performances, and rankings.
+
+## 9. LIVE SCORES AND REAL-TIME UPDATES
+
+Create a live scoring system where authorized match officials or scorekeepers can update match information.
+
+Features:
+- Live match score.
+- Match clock.
+- Current period or set.
+- Recent events.
+- Match status.
+- Live statistics.
+- Match commentary.
+- Score update timestamps.
+
+Use real-time technology where supported.
+
+Public visitors should be able to follow matches without refreshing the page manually.
+
+Only authorized users should be able to update official scores.
+
+Implement validation and an audit trail for score changes.
+
+Display whether a score is:
+- Live and provisional.
+- Submitted for verification.
+- Official and confirmed.
+
+If real-time infrastructure is unavailable, implement reliable periodic refresh as a fallback.
+
+## 10. LEAGUE TABLES, STANDINGS AND RANKINGS
+
+Automatically calculate standings from approved match results.
+
+### Football league table
+
+Display:
+- Position.
+- Team.
+- Played.
+- Won.
+- Drawn.
+- Lost.
+- Goals For.
+- Goals Against.
+- Goal Difference.
+- Points.
+- Recent form.
+
+Allow administrators to configure tie-breaking rules.
+
+### Other sports
+
+Create appropriate standings for each sport.
+
+Examples:
+
+Basketball:
+- Games played.
+- Wins.
+- Losses.
+- Points scored.
+- Points conceded.
+- Point difference.
+- Win percentage.
+
+Volleyball:
+- Matches played.
+- Matches won.
+- Sets won.
+- Sets lost.
+- Points won.
+- Points lost.
+- Ranking points.
+
+Tennis:
+- Match wins.
+- Match losses.
+- Sets won.
+- Games won.
+- Ranking points.
+
+Athletics:
+- Event position.
+- Performance.
+- Timing or measurement.
+- Qualification status.
+- Overall ranking.
+
+The standings engine must be configurable and must not use football statistics for other sports.
+
+## 11. KNOCKOUT BRACKET MANAGEMENT
+
+Create a visual tournament bracket system.
+
+Support:
+- Round of 32.
+- Round of 16.
+- Quarter-finals.
+- Semi-finals.
+- Third-place playoff.
+- Final.
+- Custom knockout stages.
+
+Automatically advance winners to the next round after results are approved.
+
+Support:
+- Byes.
+- Seeding.
+- Two-leg ties.
+- Aggregate scores.
+- Away goals where applicable and explicitly configured.
+- Extra time.
+- Penalty shootouts.
+- Walkovers.
+- Disqualifications.
+
+For double elimination, show both winners' and losers' brackets and the grand final structure.
+
+Make brackets interactive and responsive.
+
+## 12. PLAYER AND TEAM STATISTICS
+
+Create detailed performance tracking.
+
+### Football statistics
+
+Team statistics:
+- Goals scored.
+- Goals conceded.
+- Clean sheets.
+- Wins.
+- Draws.
+- Losses.
+- Possession where recorded.
+- Shots.
+- Corners.
+- Fouls.
+
+Player statistics:
+- Goals.
+- Assists.
+- Appearances.
+- Minutes played.
+- Yellow cards.
+- Red cards.
+- Clean sheets for relevant positions.
+- Saves for goalkeepers.
+
+Leaderboards:
+- Top scorer.
+- Top assists.
+- Best goalkeeper.
+- Most appearances.
+- Most disciplined player.
+
+### Other sports
+
+Provide sport-specific statistics and leaderboards.
+
+For example:
+- Basketball: top scorer, rebounds, assists and steals.
+- Volleyball: top attackers, blockers and servers.
+- Tennis: match wins and ranking.
+- Athletics: fastest times, longest distances and highest jumps.
+- Chess: wins, draws, losses and rating.
+
+Only calculate statistics from recorded and approved events.
+
+## 13. REFEREE AND OFFICIALS MANAGEMENT
+
+Create a referee and tournament officials module.
+
+Include:
+- Official profile.
+- Photograph.
+- Contact information.
+- Qualification or certification.
+- Sport specialization.
+- Availability.
+- Assigned matches.
+- Match history.
+- Performance reports.
+
+Allow tournament administrators to assign officials to fixtures.
+
+Prevent double-booking of officials where schedules overlap.
+
+Provide a match report submission interface.
+
+## 14. VENUE AND FACILITY MANAGEMENT
+
+Allow administrators to register and manage venues.
+
+Fields:
+- Venue name.
+- Address.
+- City.
+- Region.
+- Country.
+- Venue photograph.
+- Venue capacity.
+- Supported sports.
+- Available facilities.
+- Contact person.
+- Availability schedule.
+
+Support multiple venues per tournament.
+
+Allow public visitors to see venue information and directions where appropriate.
+
+## 15. TOURNAMENT REGISTRATION AND FINANCIAL MANAGEMENT
+
+Build a registration and financial management module.
+
+Support:
+- Free registration.
+- Paid registration.
+- Team registration fees.
+- Individual entry fees.
+- Payment confirmation.
+- Payment reference.
+- Outstanding balances.
+- Refund status.
+- Financial summaries.
+
+Allow administrators to record cash payments manually.
+
+Where payment integrations are available, support appropriate providers such as:
+- MTN Mobile Money.
+- Orange Money.
+- Bank transfer.
+- Card payment providers.
+
+For Cameroon, use FCFA (XAF) as a default currency while allowing other currencies.
+
+Never mark a payment as successful solely because a user submitted a screenshot or claimed to have paid. Require verified payment confirmation or authorized administrative approval.
+
+Generate receipts where appropriate.
+
+## 16. DISCIPLINARY MANAGEMENT
+
+Create a disciplinary and incident management module.
+
+Support:
+- Yellow cards.
+- Red cards.
+- Suspensions.
+- Player disqualifications.
+- Team sanctions.
+- Technical fouls.
+- Protests.
+- Appeals.
+- Official warnings.
+- Administrative decisions.
+
+Allow administrators to record:
+- Incident date.
+- Tournament.
+- Match reference.
+- Involved participants.
+- Description.
+- Evidence attachments where appropriate.
+- Decision.
+- Suspension duration.
+- Appeal status.
+
+Automatically apply configured suspensions where rules permit.
+
+Keep a complete history of disciplinary actions.
+
+## 17. PUBLIC TOURNAMENT WEBSITE
+
+Create an attractive public-facing tournament portal.
+
+### Homepage
+
+Include:
+- Tournament branding.
+- Featured active competitions.
+- Upcoming tournaments.
+- Live matches.
+- Recent results.
+- Tournament categories.
+- Featured teams.
+- Top performers.
+- News and announcements.
+
+### Tournament detail page
+
+Each tournament should have:
+- Overview.
+- Sport.
+- Competition format.
+- Organizer.
+- Venue.
+- Dates.
+- Participating teams or individuals.
+- Fixtures.
+- Results.
+- Standings.
+- Knockout brackets.
+- Statistics.
+- Rules and regulations.
+- News.
+- Contact details.
+
+### Public navigation
+
+Provide:
+- Home.
+- Tournaments.
+- Live Scores.
+- Fixtures.
+- Results.
+- Standings.
+- Teams.
+- Players.
+- Rankings.
+- News.
+- About.
+- Contact.
+
+Visitors should be able to search and filter tournaments by sport, location, status, and year.
+
+Make each tournament shareable through a unique public URL.
+
+## 18. NEWS, ANNOUNCEMENTS AND NOTIFICATIONS
+
+Implement a communication module.
+
+Allow administrators to publish:
+- Tournament announcements.
+- Registration reminders.
+- Fixture updates.
+- Match postponements.
+- Result announcements.
+- Disciplinary decisions.
+- Final standings.
+- Tournament awards.
+
+Notification channels:
+- In-app notifications.
+- Email.
+- SMS where supported.
+- WhatsApp integration where supported.
+
+Allow users to subscribe to notifications for selected tournaments or teams.
+
+Include notification preferences and avoid unnecessary messages.
+
+## 19. REPORTS AND ANALYTICS
+
+Develop a reporting dashboard.
+
+Provide:
+- Number of tournaments.
+- Active tournaments.
+- Completed tournaments.
+- Number of teams.
+- Number of players.
+- Number of individual participants.
+- Matches played.
+- Upcoming matches.
+- Results submitted.
+- Results awaiting approval.
+- Registration statistics.
+- Revenue and payment summaries.
+- Participant statistics.
+
+Generate tournament-specific reports.
+
+Allow exporting:
+- Fixtures.
+- Match results.
+- League standings.
+- Team rosters.
+- Player statistics.
+- Financial summaries.
+- Tournament reports.
+
+Support PDF, Excel, and CSV exports where technically available.
+
+Create printable match sheets and tournament schedules.
+
+## 20. TOURNAMENT AWARDS AND CHAMPIONSHIP RECORDS
+
+Create an awards and historical records module.
+
+Support:
+- Tournament champion.
+- Runner-up.
+- Third place.
+- Best player.
+- Top scorer.
+- Best goalkeeper.
+- Best coach.
+- Fair play award.
+- Most valuable player.
+- Sport-specific awards.
+
+Allow administrators to configure awards according to the selected sport.
+
+Maintain historical tournament records and championship archives.
+
+Display past winners and competition history on public tournament pages.
+
+## 21. DATABASE AND DATA ARCHITECTURE
+
+Design a robust relational database with appropriate relationships.
+
+Core entities should include:
+
+- Users.
+- Roles.
+- Permissions.
+- Organizations.
+- Sports.
+- Sport configurations.
+- Tournaments.
+- Seasons.
+- Competition stages.
+- Groups.
+- Teams.
+- Participants.
+- Players.
+- Team rosters.
+- Registrations.
+- Venues.
+- Officials.
+- Fixtures.
+- Matches.
+- Match events.
+- Scores.
+- Statistics.
+- Standings.
+- Brackets.
+- Payments.
+- Disciplinary records.
+- Protests and appeals.
+- Announcements.
+- Notifications.
+- Awards.
+- Audit logs.
+
+Implement:
+- Unique identifiers.
+- Foreign key relationships.
+- Appropriate indexes.
+- Data validation.
+- Transaction-safe updates.
+- Referential integrity.
+- Soft deletion where appropriate.
+- Created and updated timestamps.
+- Organization-level data isolation.
+
+Do not store all sport-specific match data in an unstructured manner if a well-designed sport-specific model can be used.
+
+Use a flexible architecture that supports additional sports without requiring fundamental database redesign.
+
+## 22. USER INTERFACE AND DESIGN
+
+Develop a professional sports technology interface.
+
+### Visual identity
+
+Recommended colours:
+- Deep navy or dark charcoal.
+- Athletic green.
+- White.
+- Light grey.
+- Controlled orange or gold accents.
+
+Use clear typography, modern cards, intuitive icons, responsive tables, and professional data visualizations.
+
+### Dashboard design
+
+The administrative dashboard should include:
+- Sidebar navigation.
+- Overview statistics.
+- Tournament management.
+- Registration management.
+- Fixtures.
+- Live match centre.
+- Results.
+- Standings.
+- Teams and players.
+- Officials.
+- Venues.
+- Reports.
+- Settings.
+
+Use different dashboard views depending on the user's permissions.
+
+### Public design
+
+The public portal should feel like a modern sports media and competition platform.
+
+Prioritize:
+- Live score visibility.
+- Tournament discovery.
+- Fixtures.
+- Standings.
+- Team profiles.
+- Match details.
+- Mobile usability.
+
+Do not overcrowd the interface with unnecessary information.
+
+## 23. MOBILE-FIRST AND RESPONSIVE EXPERIENCE
+
+The system must work properly on:
+- Smartphones.
+- Tablets.
+- Laptops.
+- Desktop computers.
+
+Provide a responsive administrative dashboard and public website.
+
+Match officials should be able to submit scores using mobile devices.
+
+Team managers should be able to register players and monitor fixtures from their phones.
+
+Public users should easily follow live matches, standings, and tournament updates.
+
+## 24. SECURITY AND DATA PROTECTION
+
+Implement strong security practices.
+
+Requirements:
+- Secure authentication.
+- Role-based authorization.
+- Password hashing.
+- Secure session handling.
+- Protection against SQL injection.
+- Protection against cross-site scripting.
+- CSRF protection where applicable.
+- API authentication and authorization.
+- Rate limiting.
+- Secure file uploads.
+- Input validation.
+- Audit logging.
+- Data backups.
+- Appropriate privacy controls.
+
+Ensure that one organization cannot access or modify another organization's private tournament data.
+
+Implement additional protection for personal participant information, emergency contacts, and payment records.
+
+Provide appropriate privacy and data retention settings.
+
+## 25. TECHNOLOGY AND IMPLEMENTATION REQUIREMENTS
+
+Choose a reliable, scalable technology stack compatible with the development environment.
+
+Preferred architecture:
+
+Frontend:
+- React or Next.js.
+- TypeScript.
+- Modern responsive UI framework.
+- Reusable components.
+- Accessible interfaces.
+
+Backend:
+- Secure API layer.
+- Server-side validation.
+- Tournament business logic.
+- Authentication and permissions.
+- Match scoring and standings services.
+
+Database:
+- PostgreSQL or Supabase PostgreSQL.
+- Proper relational structure.
+- Database constraints.
+- Row-level security where applicable.
+- Database migrations.
+
+Infrastructure:
+- Secure hosting.
+- Image and document storage.
+- Automated backups.
+- Logging and monitoring.
+- Environment-based configuration.
+
+Use real-time database subscriptions or WebSocket technology for live scores where supported.
+
+If the selected AI development platform has a preferred technology stack, adapt the architecture without sacrificing the functional requirements.
+
+Do not introduce unnecessary technologies or duplicate backend services.
+
+## 26. ADMINISTRATOR CONFIGURATION AND SYSTEM FLEXIBILITY
+
+Allow administrators to configure:
+
+- Sports.
+- Competition categories.
+- Tournament formats.
+- Scoring rules.
+- Ranking rules.
+- Age groups.
+- Gender categories.
+- Registration requirements.
+- Match duration.
+- Periods and sets.
+- Disciplinary rules.
+- Venues.
+- Notifications.
+- Currency.
+- Languages.
+- Public visibility.
+
+Create a flexible settings interface.
+
+New tournaments should inherit sensible sport-specific defaults while remaining independently configurable.
+
+Changes to tournament rules after competition begins must require appropriate authorization and create an audit record.
+
+## 27. MULTILINGUAL AND REGIONAL SUPPORT
+
+Support English and French as primary interface languages.
+
+Use a proper translation structure so additional languages can be introduced later.
+
+Support:
+- Cameroon as an initial country option.
+- Regional and international competitions.
+- FCFA (XAF).
+- Other currencies.
+- Africa/Douala timezone as an available default.
+- Other timezones for international tournaments.
+- Local date and time formatting.
+
+Ensure that match schedules display the correct local time for the tournament.
+
+## 28. DEMONSTRATION DATA AND INITIAL SETUP
+
+Create a demonstration environment with realistic but clearly labelled sample data.
+
+Include:
+- One sample football tournament.
+- One sample basketball tournament.
+- One sample volleyball tournament.
+- One sample individual tennis competition.
+- Sample teams and participants.
+- Sample fixtures.
+- Sample results.
+- Sample standings.
+- Sample knockout brackets.
+
+Use demonstration records to test the different sport-specific rules.
+
+Clearly identify demonstration data and provide a safe process for removing it before production.
+
+Do not mix demonstration records with actual competitions.
+
+## 29. TESTING AND QUALITY ASSURANCE
+
+Perform comprehensive testing before declaring the platform complete.
+
+### Functional testing
+
+Test:
+- Account creation.
+- Login and logout.
+- Role permissions.
+- Organization management.
+- Tournament creation.
+- Sport configuration.
+- Team registration.
+- Individual registration.
+- Fixture generation.
+- Match scheduling.
+- Score entry.
+- Result approval.
+- Standings calculation.
+- Bracket advancement.
+- Statistics.
+- Notifications.
+- Payments where integrated.
+- Report exports.
+
+### Sport-specific testing
+
+Football:
+- Test win, draw and loss calculations.
+- Test goal difference.
+- Test group qualification.
+- Test penalty shootouts.
+
+Basketball:
+- Test two-point, three-point and free-throw scoring.
+- Test quarters and overtime.
+- Test player statistics.
+
+Volleyball:
+- Test sets and match winners.
+- Test set-based rankings.
+
+Tennis:
+- Test games, sets and tiebreaks.
+
+Athletics:
+- Test event timing, measurements, heats and rankings.
+
+### Security testing
+
+Verify:
+- Unauthorized access is blocked.
+- Users cannot modify other organizations' data.
+- Referees cannot change unauthorized matches.
+- Public visitors cannot access private records.
+- Sensitive files are protected.
+
+### Performance testing
+
+Ensure that the platform remains responsive with increasing numbers of tournaments, teams, matches, and spectators.
+
+## 30. DEVELOPMENT PHASES
+
+Build the platform in carefully controlled stages.
+
+### Phase 1: Foundation
+- Application structure.
+- Database design.
+- Authentication.
+- User roles.
+- Organization management.
+- Sport configuration.
+
+### Phase 2: Tournament Management
+- Tournament creation.
+- Registration.
+- Team and participant management.
+- Tournament formats.
+- Competition rules.
+
+### Phase 3: Fixtures and Match Management
+- Fixture generation.
+- Scheduling.
+- Venues.
+- Officials.
+- Match management.
+- Score entry.
+
+### Phase 4: Results and Competition Engine
+- Standings.
+- Knockout brackets.
+- Sport-specific statistics.
+- Qualification.
+- Tournament awards.
+
+### Phase 5: Public Portal
+- Tournament discovery.
+- Live scores.
+- Fixtures.
+- Results.
+- Team and player profiles.
+- Public rankings.
+
+### Phase 6: Advanced Features
+- Notifications.
+- Payments.
+- Financial reports.
+- Analytics.
+- Exports.
+- Historical archives.
+
+### Phase 7: Quality Assurance and Deployment
+- Security testing.
+- Performance optimization.
+- Mobile testing.
+- Data validation.
+- Production deployment.
+- Administrator documentation.
+
+Do not attempt to implement all modules as disconnected mockups in one step. Build and test the underlying functionality before adding more features.
+
+## 31. FINAL DELIVERABLE
+
+Deliver a fully functional Universal Tournament Management System.
+
+The platform must be capable of managing football tournaments while supporting basketball, volleyball, tennis, athletics, and other sports through its configurable sport engine.
+
+The application must include:
+
+1. A professional public sports portal.
+2. A secure administrator dashboard.
+3. Multi-organization management.
+4. Tournament creation and configuration.
+5. Team and individual registration.
+6. Automated fixture generation.
+7. Match and game management.
+8. Live score functionality.
+9. Standings and rankings.
+10. Knockout brackets.
+11. Sport-specific statistics.
+12. Referee and official management.
+13. Financial and registration management.
+14. Notifications.
+15. Reports and exports.
+16. Historical tournament archives.
+17. Multilingual support.
+18. Secure database and access controls.
+
+### FINAL DEVELOPMENT INSTRUCTION
+
+Prioritize functional accuracy, data integrity, usability, scalability, and maintainability.
+
+Do not create buttons that do nothing, decorative dashboards with fake statistics, static league tables, or simulated features that are presented as operational.
+
+Every major action must connect to the appropriate backend functionality and database records.
+
+Where a feature is not yet implemented, label it clearly as pending rather than pretending it works.
+
+The final platform should be suitable for deployment and real-world use by sports associations, football organizers, schools, universities, clubs, communities, and tournament management companies.
+
+**Build a universal competition platform where football is the starting point, but no sport or competitive game is excluded by the underlying architecture.**

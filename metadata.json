@@ -1,0 +1,6 @@
+{
+  "name": "UTMS - Universal Tournament Management System",
+  "description": "Enterprise-grade multi-sport competition engine supporting football, basketball, volleyball and tennis with automated fixtures, live scoring, interactive brackets, and team administration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
